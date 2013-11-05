@@ -411,7 +411,13 @@ class pkgDepCache : protected pkgCache::Namespace
    bool MarkInstall(PkgIterator const &Pkg,bool AutoInst = true,
 		    unsigned long Depth = 0, bool FromUser = true,
 		    bool ForceImportantDeps = false);
-   void MarkProtected(PkgIterator const &Pkg) { PkgState[Pkg->ID].iFlags |= Protected; };
+   void MarkProtected(PkgIterator const &Pkg, bool protect = true)
+   {
+     if (protect)
+      PkgState[Pkg->ID].iFlags |= Protected;
+     else
+      PkgState[Pkg->ID].iFlags &= ~Protected;
+   }
 
    void SetReInstall(PkgIterator const &Pkg,bool To);
    void SetCandidateVersion(VerIterator TargetVer);

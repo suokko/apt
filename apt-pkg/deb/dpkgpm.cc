@@ -664,7 +664,7 @@ void pkgDPkgPM::ProcessDpkgStatusLine(char *line)
       }
       std::string msg;
       strprintf(msg, _(iter->second), i18n_pkgname.c_str());
-      d->progress->StatusChanged(pkgname, PackagesDone, PackagesTotal, msg);
+      d->progress->StatusChanged(short_pkgname, PackagesDone, PackagesTotal, msg);
 
       // FIXME: this needs a muliarch testcase
       // FIXME2: is "pkgname" here reliable with dpkg only sending us 
@@ -693,7 +693,7 @@ void pkgDPkgPM::ProcessDpkgStatusLine(char *line)
          PackagesDone++;
 
          strprintf(msg, translation, i18n_pkgname.c_str());
-         d->progress->StatusChanged(pkgname, PackagesDone, PackagesTotal, msg);
+         d->progress->StatusChanged(short_pkgname, PackagesDone, PackagesTotal, msg);
          
       }
       if (Debug == true) 

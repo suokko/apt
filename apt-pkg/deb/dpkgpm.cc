@@ -583,7 +583,7 @@ void pkgDPkgPM::ProcessDpkgStatusLine(int OutStatusFd, char *line)
    if(strncmp(list[0].c_str(), "processing", strlen("processing")) == 0)
    {
       char s[200];
-      const char* const pkg_or_trigger = list[2].c_str();
+      const char* const pkg_or_trigger = StringSplit(list[2], ":")[0].c_str();
       action =  list[1].c_str();
       const std::pair<const char *, const char *> * const iter =
 	std::find_if(PackageProcessingOpsBegin,
